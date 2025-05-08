@@ -1,0 +1,21 @@
+name: Build Visual Studio Project
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build Solution
+      run: msbuild CS-499-Enhancement-2.sln /p:Configuration=Release
