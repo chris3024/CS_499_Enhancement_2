@@ -29,6 +29,10 @@ string convertCase(const string& userCourseID) {
     return results;
 }
 
+/*
+* Original AVL tree code gathered from: https://www.wscubetech.com/resources/dsa/avl-tree,
+* then reworked to better fit this project
+*/
 class AVLTree {
 private:
     struct Node {
@@ -42,7 +46,7 @@ private:
     Node* root = nullptr;
 
     int height(Node* n) {
-        if (n == NULL)
+        if (n == nullptr)
             return 0;
         return n->height;
     }
@@ -52,7 +56,7 @@ private:
     }
 
     int balanceFactor(Node* n) {
-        if (n == NULL)
+        if (n == nullptr)
             return 0;
         return height(n->left) - height(n->right);
     }
@@ -76,7 +80,7 @@ private:
     }
 
     Node* insert(Node* node, CourseData course) {
-        if (node == NULL) 
+        if (node == nullptr) 
             return new Node(course);
 
         if (course.courseID < node->data.courseID)
@@ -104,7 +108,7 @@ private:
     }
 
     void inOrder(Node* node) {
-        if (node == NULL)
+        if (node == nullptr)
             return;
         inOrder(node->left);
         cout << node->data.courseID << ", " << node->data.courseName << endl;
@@ -180,7 +184,7 @@ void printCourseInfo(const AVLTree& tree, const string& courseID)  {
         }
     }
     cout << endl;
-};
+}
 
 int main() {
     AVLTree courseTree;
