@@ -9,9 +9,48 @@ Operation | Vector | AVL Tree
 --- | --- | ---
 Sorted Printing | O(n log n) | O(n)
 Search and Print Prereqs | O(k*n) | O(k log n)
-
 <sub>k = number of prerequisites</sub>
 
-### Menu System
-<img src="" alt=""/>
+___
+
+Main Menu | Loading File
+--- | ---
+<img src="screenshots/Screenshot 2025-05-26 095451.png" alt="Menu System" width="557" /> | <img src="screenshots/Screenshot 2025-05-26 095506.png" alt="Loading File" width="557" />
+
+Printing Courses (Alphanumerical) | Search Course / Return Prerequisites
+--- | ---
+<img src="screenshots/Screenshot 2025-05-26 095516.png" alt="Printed Courses - Alphanumerical" width="557" /> | <img src="screenshots/Screenshot 2025-05-26 095530.png" alt="Printed Course and Prereqs" width="557" />
+
+___
+
+## Installation Instructions
+
+#### Prerequisites
+  * <a href="https://visualstudio.microsoft.com/">Visual Studio 2022 or newer</a>
+
+1. Clone Repository
+   ```bash
+   git clone https://github.com/chris3024/CS_499_Enhancement_2.git
+   ```
+   Manual Download
+     * Click the green Code button
+     * Select Download ZIP
+     * Extract to a directory of your choice
+       
+2. Open the Project
+   * Launch Visual Studio
+   * Click File -> Open -> Project/Solution
+   * Navigate to the cloned/extracted directory
+   * Open the ```.sln``` (solution) file
+
+3. Build the Project
+   * Set the desired build configuration
+       * ```Debug``` or ```Release```
+       * ```x86``` or ```x64```
+   * Click Build -> Build Solution
+
+4. Run the application
+   * Press F5 or click the Start button in Visual Studio to run the program
+
+
 
