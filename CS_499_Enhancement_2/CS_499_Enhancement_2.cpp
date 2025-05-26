@@ -1,6 +1,6 @@
 /* CS-499: Enhancement 2
 *  Developer: Christopher Sharp
-*  Date:
+*  Date: 05/31/2025
 */
 
 
@@ -21,7 +21,7 @@ struct CourseData {
     vector<string> preReqNames;
 };
 
-string convertCase(const string& userCourseID) {
+static string convertCase(const string& userCourseID) {
     string results;
     for (char c : userCourseID) {
         results += toupper(c);
@@ -35,6 +35,8 @@ string convertCase(const string& userCourseID) {
 */
 class AVLTree {
 private:
+
+    // Internal node structure
     struct Node {
         CourseData data;
         Node* left;
@@ -45,22 +47,28 @@ private:
 
     Node* root = nullptr;
 
+     
+    
+    // Returns the height of the node, if nullptr, height = 0
     int height(Node* n) {
         if (n == nullptr)
             return 0;
         return n->height;
     }
 
+    // Update node height based on max height of left/right subtrees
     void updateHeight(Node* n) {
         n->height = 1 + max(height(n->left), height(n->right));
     }
 
+    // Calculate node balance factor (left height - right height)
     int balanceFactor(Node* n) {
         if (n == nullptr)
             return 0;
         return height(n->left) - height(n->right);
     }
 
+    // Left rotation to fix right-heavy imbalance
     Node* rotateLeft(Node* x) {
         Node* y = x->right;
         x->right = y->left;
@@ -70,6 +78,7 @@ private:
         return y;
     }
 
+    // Right rotation to fix left-heavy imbalance
     Node* rotateRight(Node* y) {
         Node* x = y->left;
         y->left = x->right;
@@ -79,6 +88,7 @@ private:
         return x;
     }
 
+    // Inserts the data, then checks the balance and performs rotations if needed
     Node* insert(Node* node, CourseData course) {
         if (node == nullptr) 
             return new Node(course);
@@ -107,6 +117,7 @@ private:
         return node;
     }
 
+    // Traverses the tree returning the data inOrder
     void inOrder(Node* node) {
         if (node == nullptr)
             return;
@@ -115,6 +126,7 @@ private:
         inOrder(node->right);
     }
 
+    // Searches for the given course
     const CourseData* search(Node* node, const string& courseID) const {
         if (!node) return nullptr;
         if (courseID == node->data.courseID) return &node->data;
@@ -137,7 +149,7 @@ public:
 };
 
 // Parse CSV and insert into AVL tree
-void loadCoursesFromFile(const string& fileName, AVLTree& tree) {
+static void loadCoursesFromFile(const string& fileName, AVLTree& tree) {
     ifstream file(fileName);
     string line;
     if (!file.is_open()) {
@@ -167,7 +179,8 @@ void loadCoursesFromFile(const string& fileName, AVLTree& tree) {
     file.close();
 }
 
-void printCourseInfo(const AVLTree& tree, const string& courseID)  {
+// Search AVL tree for a course and print its prerequisites
+static void printCourseInfo(const AVLTree& tree, const string& courseID)  {
     const CourseData* course = tree.find(convertCase(courseID));
     if (!course) {
         cout << "Course not found.\n";
@@ -186,6 +199,9 @@ void printCourseInfo(const AVLTree& tree, const string& courseID)  {
     cout << endl;
 }
 
+/* Main application entry point
+*  Runs the user interface and handles menu interactions
+*/ 
 int main() {
     AVLTree courseTree;
     int choice = 0;
