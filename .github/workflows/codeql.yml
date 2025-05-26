@@ -4,14 +4,13 @@ on:
   push:
     branches: [main]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [main]
   schedule:
-    - cron: '0 2 * * 1'
+    - cron: '0 2 * * 1' # weekly scan
 
 jobs:
   analyze:
-    name: Analyze
+    name: CodeQL Analyze
     runs-on: windows-latest
 
     permissions:
@@ -34,12 +33,11 @@ jobs:
         languages: cpp
         build-mode: manual
 
-    - name: Set up MSBuild path (Visual Studio)
+    - name: Set up MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Build project manually
-      run: |
-        msbuild CS_499_Enhancement_2.sln /p:Configuration=Release
+    - name: Build solution manually
+      run: msbuild CS_499_Enhancement_2.sln /p:Configuration=Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
