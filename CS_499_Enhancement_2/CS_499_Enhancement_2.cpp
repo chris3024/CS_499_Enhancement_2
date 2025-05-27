@@ -147,7 +147,7 @@ private:
     }
 
 public:
-    // Public interface: takes a CourseData by value, passes by reference internally
+    
     void insert(CourseData course) {
         root = insert(move(root), course);
     }
