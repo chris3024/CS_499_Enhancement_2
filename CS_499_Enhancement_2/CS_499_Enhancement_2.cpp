@@ -1,6 +1,14 @@
 /* CS-499: Enhancement 2
 *  Developer: Christopher Sharp
 *  Date: 05/31/2025
+* 
+*  This program is a console based application that handles course planning for ABCU
+*  The program inserts the data from the CSV into the self-balancing AVL tree and allows
+*  the user to select option from the menu system to display the courses in alphabetical 
+*  order, or search for a course and return the corresponding prerequisites.
+* 
+*  CSV should be structured as:
+*  courseID, courseName, prerequisites(seperated by commas)
 */
 
 #include <iostream>
@@ -14,12 +22,14 @@
 
 using namespace std;
 
+// Structure to hold the course data
 struct CourseData {
     string courseID;
     string courseName;
     vector<string> preReqNames;
 };
 
+// Helper function to sanitize data
 static string convertCase(const string& userCourseID) {
     string results;
     for (char c : userCourseID) {
@@ -34,6 +44,7 @@ static string convertCase(const string& userCourseID) {
 */
 class AVLTree {
 private:
+
     // Internal node structure
     struct Node {
         CourseData data;
@@ -261,6 +272,11 @@ int main() {
         }
         catch (const exception& e) {
             cout << "Error: " << e.what() << "\n";
+            cout << "Press Enter Twice to Continue...";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
+            system("cls");
+            continue;
         }
     }
 
