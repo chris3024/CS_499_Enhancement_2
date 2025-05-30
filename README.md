@@ -53,5 +53,25 @@ ___
 4. Run the application
    * Press F5 or click the Start button in Visual Studio to run the program
 
+___
 
+## Usage
+
+1. Load Data Structure
+   * Choose option ```1```
+   * Enter full CSV filename (```ABCU_Test.csv```)
+     
+2. Print Course List
+   * After the data structure is loaded:
+     *  Choose option ```2```
+     *  Display all loaded courses in sorted order
+
+3. Print Course Information
+   * After the data structure is loaded:
+     * Choose option ```3```
+     * Enter Course ID
+     * Displays course name and prerequisites
+
+4. Quit
+   * Choose option ```9```
 
